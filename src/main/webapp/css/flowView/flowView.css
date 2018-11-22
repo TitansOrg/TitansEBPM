@@ -1,0 +1,111 @@
+/*画布样式*/
+#svgCanvas {
+
+    overflow: hidden;
+    font-size: 40px;
+}
+/**
+ *
+ */
+ a text {
+    text-decoration :underline;
+ }
+
+/* 选择流程对话框 */
+#wftable ul {
+
+    margin: 0px;
+    padding: 8px;
+}
+.layout-expand-west{
+    display:none !important;
+}
+.displayNone{
+    display:none !important;
+}
+#leftinfo{
+    width:100% !important;
+}
+#svgPictureId{
+    width:100% !important;
+}
+.west{
+    width:50% !important;
+}
+.right_two{
+    width:20% !important;
+}
+.left_width{
+    width:60% !important;
+}
+.picture_width{
+    width:40% !important;
+}
+.right_eight{
+    width:80% !important;
+}
+.checkbox-label-style{
+    font-size:12px;
+}
+.l-btn-text{
+    font-size:12px !important;
+    line-height: 16px !important;
+}
+#iframeLink{
+    border-top-width: 0px;
+    border-left-width: 1px;
+    border-color:#D3D3D3;
+}
+.center{
+    width:98% !important;
+}
+.westFile{
+    width:30% !important;
+}
+.centerFile{
+    width:68% !important;
+}
+#wftable ul li {
+
+    border-bottom-style: solid;
+    border-bottom-color: #B5D7F7;
+    border-bottom-width: 1px;
+    height: 25px;
+    list-style: outside none none;
+    cursor: pointer;
+    color: #0000FF;
+    margin: 0px;
+    padding: 8px 0px 0px 0px;
+    text-align: left;
+}
+.div_float{
+    float:left;
+}
+#wftable ul li:hover {
+
+    border-bottom-style: solid;
+    border-bottom-color: #B5D7F7;
+    border-bottom-width: 1px;
+    height: 25px;
+    cursor: pointer;
+    color: #FF0000;
+    margin: 0px;
+    padding: 8px 0px 0px 0px;
+    text-align: left;
+}
+
+/*
+ * 副标题，显示流程负责人和流程周期
+ */
+#secondTitle {
+
+    position: relative;
+    float: right;
+    right: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    width:30%;
+    display: inline-block;
+}
+
+

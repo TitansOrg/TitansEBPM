@@ -1,0 +1,1 @@
+var InfoDisplay = new Interface("InfoDisplay",["displayInfo"]);
