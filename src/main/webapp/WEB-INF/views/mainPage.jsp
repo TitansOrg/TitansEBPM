@@ -129,12 +129,12 @@
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<%=serverName%>/images/head/head.jpg" class="user-image" alt="User Image">
-                                        <span class="hidden-xs">商景春</span>
+                                        <span class="hidden-xs">${curr_user_info.username }</span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="user-header">
                                             <img src="<%=serverName%>/images/head/head.jpg" class="img-circle">
-                                            <p>商景春<small>软件工程师</small></p>
+                                            <p>${curr_user_info.username }<small>软件工程师</small></p>
                                         </li>
                                         <li class="user-footer">
                                             <div class="pull-left">
