@@ -152,8 +152,12 @@ BasicProcess.prototype.setProcessLayout = function(data) {
     var svg = document.getElementById("svgCanvas");
     document.getElementById("svgCanvas").style.width = (maxWidth) + "px";
     document.getElementById("svgCanvas").style.height = (maxHeight + 100) + "px";
+    if(maxHeight < 0) {
+
+        maxHeight = 50;
+    }
     var s = "0 0 " + (maxWidth + 80) + " " + maxHeight;
-    s = "0 0 " + maxWidth + " " + (maxHeight - 100);
+    //s = "0 0 " + maxWidth + " " + (maxHeight - 100);
     svg.setAttribute('viewBox',s);
 };
 
