@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String serverName = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<link rel="stylesheet" type="text/css" href="<%=serverName%>/js/easyui/themes/gray/easyui.css">
+<link rel="stylesheet" type="text/css" href="<%=serverName%>/js/easyui/themes/icon.css">
+<link rel="stylesheet" href="<%=serverName%>/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="<%=serverName%>/css/font-awesome/font-awesome.css">
+<link rel="stylesheet" href="<%=serverName%>/css/ionicons/ionicons.min.css">
+<link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
+<link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
+<link rel="stylesheet" href="<%=serverName%>/css/zTree/zTreeStyle.css">
+<script src="<%=serverName%>/js/jquery/jquery.min.js"></script>
+<script src="<%=serverName%>/js/easyui/jquery.easyui.min.js"></script>
+<script src="<%=serverName%>/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="<%=serverName%>/js/bootstrap/bootstrap.min.js"></script>
+<script src="<%=serverName%>/js/zTree/jquery.ztree.core.min.js"></script>
+<script src="<%=serverName%>/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
+<script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
+<script src="<%=serverName%>/js/snap/snap.svg.js"></script>
+<script src="<%=serverName%>/js/canvg/rgbcolor.js"></script>
+<script src="<%=serverName%>/js/canvg/StackBlur.js"></script>
+<script src="<%=serverName%>/js/canvg/canvg.js"></script>
+<script type="text/javascript">
+function setIframeHeight(iframe) {
+if (iframe) {
+        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+        if (iframeWin.document.body) {
+            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+        }
+    }
+};
+</script>

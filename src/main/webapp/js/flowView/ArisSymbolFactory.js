@@ -480,7 +480,6 @@ function symbolclick(evt,id,type,x,y,w,h) {
         }
         $("#infoOverlay").show();
         $.ajax({
-
             type: "post",
             url: serverName + "/flowInfo/queryObjDetailInfo.do",
             dataType: "text",
@@ -944,7 +943,7 @@ ArisSymbolFactory.prototype.createArisSpecialSymbol = function (occBean) {
 ArisSymbolFactory.prototype.displayAssignTask = function (occBean) {
 
     var modelid = occBean.definitionBean.assignmentBeans[0].modelid;
-    var url = serName + "/flowInfo/flowDetail.do?modelId=" + escape(modelid);
+    var url = serName + "/flowInfo/flowDetail2.do?modelId=" + escape(modelid);
     var task = this.svg.paper.el("use", {
 
         id:occBean.definitionBean.id.replace(/[:,#]/g,''),

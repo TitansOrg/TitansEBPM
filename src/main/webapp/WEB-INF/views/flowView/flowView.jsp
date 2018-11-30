@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String serverName = request.getContextPath();
+
 %>
 <!DOCTYPE html>
 <html style="background-color: #ecf0f5;overflow: hidden">
@@ -126,14 +127,12 @@
                 }
             }
         };
-
         $(function() {
-
             zTreeObj = $.fn.zTree.init($("#treeDemo"), setting);
             $("#svgDiv").height($(document).height() - 15 - 3 - 41 - 1);
             $("#info").height($(document).height() - 15 - 3 - 41 - 1);
             $("#catalog").height($(document).height() - 15 - 3 - 41 - 1);
-            // initFlow();
+            
             document.oncontextmenu = function () {
 
                 return false;

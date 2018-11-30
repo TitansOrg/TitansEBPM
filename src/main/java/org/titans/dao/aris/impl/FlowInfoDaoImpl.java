@@ -51,25 +51,10 @@ public class FlowInfoDaoImpl extends BaseDaoImpl implements IFlowInfoDao {
                            + "aris_attr_name b,"
                            + "aris_model c "
                       + "where c.id='" + modelId + "' "
-                        + "and b.attribute_typeguid = a.type_guid "
-                        + "and b.belong_type='model' "
-                        + "and b.symbol_type='" + symbolType + "' "
-                        + "and c.id=a.parent_item_id "
-                      + "union all "
-                      + "select b.attribute_name,"
-                             + "a.long_value,"
-                             + "a.plain_text_clob,"
-                             + "a.double_value,"
-                             + "a.discriminator "
-                      + "from aris_model_attr a,"
-                           + "aris_attr_name b,"
-                           + "aris_model c "
-                      + "where c.id='" + modelId + "' "
-                        + "and b.attribute_type = a.attr_type_num "
-                        + "and a.type_guid is null "
-                        + "and b.belong_type='model' "
-                        + "and b.symbol_type='" + symbolType + "' "
-                        + "and c.id=a.parent_item_id";
+                        + "and a.attr_type_num = b.attribute_type "
+                        //+ "and b.belong_type='model' "
+                        //+ "and b.symbol_type='" + symbolType + "' "
+                        + "and c.id=a.parent_item_id ";
         SQLQuery query = getSession().createSQLQuery(sql);
         query.addScalar("attribute_name", StringType.INSTANCE);
         query.addScalar("long_value", LongType.INSTANCE);
@@ -134,28 +119,12 @@ public class FlowInfoDaoImpl extends BaseDaoImpl implements IFlowInfoDao {
                         + "aris_definition b,"
                         + "aris_attr_name c "
                    + "where b.id = :objId "
-                     + "and c.symbol_type = :objType "
-                     + "and c.belong_type = 'object' "
                      + "and a.parent_item_id = b.id "
-                     + "and a.type_guid = c.attribute_typeguid "
-                   + "union all "
-                   + "select c.attribute_name, "
-                          + "a.long_value, "
-                          + "a.plain_text_clob, "
-                          + "a.double_value,"
-                          + "a.discriminator "
-                   + "from aris_definition_attr a,"
-                        + "aris_definition b,"
-                        + "aris_attr_name c "
-                   + "where b.id = :objId "
-                     + "and c.symbol_type = :objType "
-                     + "and c.belong_type = 'object' "
-                     + "and a.parent_item_id = b.id "
-                     + "and c.attribute_type = a.attr_type_num";
-                   // + "order by c.attribute_index";
+                     + "and a.attr_type_num = c.attribute_type "
+                     + "order by a.attr_type_num asc";
+                  
         SQLQuery query = getSession().createSQLQuery(sql);
         query.setString("objId", objId);
-        query.setString("objType", objType);
         query.addScalar("attribute_name", StringType.INSTANCE);
         query.addScalar("long_value", LongType.INSTANCE);
         query.addScalar("plain_text_clob", StringType.INSTANCE);

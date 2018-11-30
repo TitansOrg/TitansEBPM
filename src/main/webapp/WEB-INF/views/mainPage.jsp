@@ -14,6 +14,17 @@
         <link rel="stylesheet" href="<%=serverName%>/css/ionicons/ionicons.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
+        <script type="text/javascript">
+              var serverName = "<%=serverName%>";
+              function setIframeHeight(iframe) {
+	              if (iframe) {
+	                  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+	                  if (iframeWin.document.body) {
+	                      iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+	                  }
+	              }
+              };
+        </script>
     </head>
     <body class="hold-transition skin-blue-light layout-top-nav">
         <div class="wrapper">
@@ -29,7 +40,7 @@
                         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="#">首页</a></li>
-                                <li class="active"><a href="#">流程文件 </a></li>
+                                <li><a  target = "mainFrame" href="<%=serverName%>/flowInfo/flowDetail.do">流程文件 </a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -41,9 +52,9 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <form class="navbar-form navbar-left" role="search">
+                            <form id="searchForm" class="navbar-form navbar-left" method="post"  target="mainFrame" role="search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="navbar-search-input" placeholder="搜索">
+                                    <input type="text" name="keyWord" class="form-control" id="navbar-search-input" onkeydown="searchSubmit(event)" placeholder="搜索">
                                 </div>
                             </form>
                         </div>
@@ -153,7 +164,7 @@
             </header>
             <div id="mainContentWrapper" class="content-wrapper">
                 <div id="mainContainer" class="container" style="padding: 0 0 0 0;width: 100%;margin: 0 0 0 0;">
-                    <iframe id="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" style="border:0px;width:100%;overflow: hidden"></iframe>
+                    <iframe  onload="setIframeHeight(this)"  id="mainFrame" name="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" style="border:0px;width:100%;overflow: hidden"></iframe>
                 </div>
             </div>
             <footer class="main-footer">
@@ -171,6 +182,7 @@
     <script src="<%=serverName%>/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
+    <script src="<%=serverName%>/js/mainPage/mainPage.js"></script>
     <!-- AdminLTE for demo purposes
     <script src="../../dist/js/demo.js"></script> -->
     <script>
@@ -180,6 +192,7 @@
             $("#mainContentWrapper").height(bodyHeight - 101);
             $("#mainContainer").height(bodyHeight - 101);
             $("#mainFrame").height(bodyHeight - 101);
+           
         });
     </script>
 </html>

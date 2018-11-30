@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,9 +108,22 @@ public class FlowInfoController {
      */
     @AuthenPassport
     @RequestMapping(value = "flowDetail")
-    public ModelAndView flowDetail(String modelId) {
-
+    public ModelAndView flowDetail(String modelId, HttpServletRequest request) {
+        
         return new ModelAndView("/flowView/flowView");
+    }
+
+    /**
+     * 响应显示流程图详细内容页面跳转方法.
+     * @return 直接跳转到流程详细信息页面
+     * @throws Exception Exception
+     */
+    @AuthenPassport
+    @RequestMapping(value = "flowDetail2")
+    public ModelAndView flowDetail2(String modelId, HttpServletRequest request) {
+        
+        request.setAttribute("modelId", modelId);
+        return new ModelAndView("/flowView/flowView2");
     }
 
     /**
@@ -131,4 +146,5 @@ public class FlowInfoController {
         }
         return result;
     }
+
 }
