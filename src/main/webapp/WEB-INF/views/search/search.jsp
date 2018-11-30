@@ -7,6 +7,12 @@
 <head>
 <%@ include file="../common/common.jspf"%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+    
+    .panel-body{
+        padding:0px;
+    }
+</style>
 <title>全局搜索</title>
 
 <script type="text/javascript">

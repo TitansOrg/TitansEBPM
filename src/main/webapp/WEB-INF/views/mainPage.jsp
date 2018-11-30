@@ -164,7 +164,7 @@
             </header>
             <div id="mainContentWrapper" class="content-wrapper">
                 <div id="mainContainer" class="container" style="padding: 0 0 0 0;width: 100%;margin: 0 0 0 0;">
-                    <iframe  onload="setIframeHeight(this)"  id="mainFrame" name="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" style="border:0px;width:100%;overflow: hidden"></iframe>
+                    <iframe  onload="setIframeHeight(this)"  id="mainFrame" name="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" style="border:0px;width:100%;height:100%;overflow: hidden"></iframe>
                 </div>
             </div>
             <footer class="main-footer">
