@@ -189,10 +189,15 @@
         
         function changeFrameHeight(){
             var height = document.documentElement.clientHeight-101;
+            if($("body").height() - 101 > height) {
+                height = $("body").height() - 101;
+            }
             $("#mainFrame").css('cssText','height:'+ height+'px !important;')
             $("#mainFrame").css('height',height+'px !important;')
         }
-        window.onresize=function(){ changeFrameHeight();}
+        window.onresize=function(){ 
+            changeFrameHeight();
+        }
         $(function(){changeFrameHeight();});
     </script>
 </html>
