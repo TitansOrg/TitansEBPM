@@ -15,15 +15,7 @@
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
         <script type="text/javascript">
-              var serverName = "<%=serverName%>";
-              function setIframeHeight(iframe) {
-	              if (iframe) {
-	                  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-	                  if (iframeWin.document.body) {
-	                      iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-	                  }
-	              }
-              };
+            var serverName = "<%=serverName%>";
         </script>
     </head>
     <body class="hold-transition skin-blue-light layout-top-nav">
@@ -163,8 +155,8 @@
                 </nav>
             </header>
             <div id="mainContentWrapper" class="content-wrapper">
-                <div id="mainContainer" class="container" style="padding: 0 0 0 0;width: 100%;margin: 0 0 0 0;">
-                    <iframe  onload="setIframeHeight(this)"  id="mainFrame" name="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" style="border:0px;width:100%;height:100%;overflow: hidden"></iframe>
+                <div id="mainContainer"  class="container" style="padding: 0 0 0 0;width:100%;height:100%;margin: 0 0 0 0;">
+                    <iframe id="mainFrame"  frameborder="0" name="mainFrame" src="<%=serverName%>/flowInfo/flowDetail.do" width="100%" height="100%" scrolling="auto"></iframe>
                 </div>
             </div>
             <footer class="main-footer">
@@ -194,5 +186,13 @@
             $("#mainFrame").height(bodyHeight - 101);
            
         });
+        
+        function changeFrameHeight(){
+            var height = document.documentElement.clientHeight-101;
+            $("#mainFrame").css('cssText','height:'+ height+'px !important;')
+            $("#mainFrame").css('height',height+'px !important;')
+        }
+        window.onresize=function(){ changeFrameHeight();}
+        $(function(){changeFrameHeight();});
     </script>
 </html>

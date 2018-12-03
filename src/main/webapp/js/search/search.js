@@ -7,7 +7,7 @@ $(function() {
         queryParams:{
             searchName : keyWord
         },
-        striped:true //隔行变色
+        striped:true//隔行变色
     }); 
     
    

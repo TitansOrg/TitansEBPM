@@ -22,7 +22,7 @@
 <script src="<%=serverName%>/js/search/search.js"></script>
 </head>
 <body>
-    <div class="container" style="border:0">
+    <div class="container" style="border:0;height:100%">
 	    <table id="allFile" class="easyui-datagrid" title="全局查询">
 	        <thead>
 	            <tr>
