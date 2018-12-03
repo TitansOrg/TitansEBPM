@@ -19,6 +19,9 @@
     <context:component-scan base-package="org.titans.*">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    <!-- 初始化数据类 -->
+    <bean class="org.titans.init.InitDataListener"></bean>
+    
     <bean id="baseDataSource" class="com.alibaba.druid.pool.DruidDataSource" abstract="true" >
         <property name="initialSize" value="1" />
         <property name="minIdle" value="1" />

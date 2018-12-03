@@ -6,7 +6,8 @@ $(function() {
         url: serverName +'search/searchAllFile.do', 
         queryParams:{
             searchName : keyWord
-        }
+        },
+        striped:true //隔行变色
     }); 
     
    

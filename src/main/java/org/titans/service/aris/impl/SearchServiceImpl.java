@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.titans.bean.aris.ModelAttrBean;
 import org.titans.bean.aris.ModelBean;
 import org.titans.dao.aris.ISearchDao;
+import org.titans.init.InitDataListener;
 import org.titans.service.aris.ISearchService;
 
 @Service("searchServiceImpl")
@@ -35,6 +36,7 @@ public class SearchServiceImpl implements ISearchService {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("modelId", model.getId());
                 Set<ModelAttrBean> modelAttrBeans = model.getModelAttrBeans();
+                long versionNum = InitDataListener.attrTypeNumMap.get("版本");
                 for(ModelAttrBean modelAttr:modelAttrBeans){
                     //模型ID
                     if(modelAttr.getAttrtypenum() == Long.valueOf("1")) {
@@ -43,7 +45,7 @@ public class SearchServiceImpl implements ISearchService {
                     } else if(modelAttr.getAttrtypenum() == Long.valueOf("55")) {
                         //标识符
                         map.put("id", modelAttr.getPlaintextfragment());
-                    } else if(modelAttr.getAttrtypenum() == Long.valueOf("1379029")) {
+                    } else if(modelAttr.getAttrtypenum() == versionNum) {
                         //版本
                         map.put("version", modelAttr.getPlaintextfragment());
                     }
