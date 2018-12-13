@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>流程管理系统</title>
+        <title>流程管理平台</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/font-awesome/font-awesome.css">
@@ -17,7 +17,7 @@
     <body class="hold-transition login-page" style="padding-top: 7%">
         <div class="login-box" style="margin:0 auto 0 auto;">
             <div class="login-logo">
-                <b>流程管理系统</b>
+                <b>流程管理平台</b>
             </div>
             <div class="login-box-body">
                 <p id="loginInfo" class="login-box-msg">请输入您的账号和密码</p>

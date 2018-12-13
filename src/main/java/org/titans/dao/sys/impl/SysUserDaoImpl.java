@@ -1,16 +1,16 @@
 package org.titans.dao.sys.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.titans.bean.sys.SysUserBean;
 import org.titans.dao.aris.impl.BaseDaoImpl;
 import org.titans.dao.sys.ISysUserDao;
 
 @Repository
-@Transactional
 public class SysUserDaoImpl extends BaseDaoImpl implements ISysUserDao {
 
     @Override
@@ -22,5 +22,34 @@ public class SysUserDaoImpl extends BaseDaoImpl implements ISysUserDao {
         criteria.add(Restrictions.eq("password", password));
         SysUserBean bean = (SysUserBean) criteria.uniqueResult();
         return bean;
+    }
+
+    @Override
+    public List<SysUserBean> queryAllSysUserInfo() {
+
+        Session session = getSession();
+        Criteria criteria = session.createCriteria(SysUserBean.class);
+        return criteria.list();
+    }
+
+    @Override
+    public SysUserBean queryDetailInfoById(String id) {
+
+        Session session = getSession();
+        return (SysUserBean) session.get(SysUserBean.class, new Long(id));
+    }
+
+    @Override
+    public void saveOrUpdateSysUserInfo(SysUserBean sysUser) {
+
+        Session session = getSession();
+        session.saveOrUpdate(sysUser);
+    }
+
+    @Override
+    public void deleteSysUserInfo(SysUserBean sysUser) {
+
+        Session session = getSession();
+        session.delete(sysUser);
     }
 }

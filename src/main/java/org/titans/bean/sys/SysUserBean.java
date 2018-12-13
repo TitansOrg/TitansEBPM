@@ -4,77 +4,114 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 用户管理表.
+ */
 @Entity
 @Table(name = "sys_user")
 public class SysUserBean {
 
+    /**
+     * 表主键.
+     */
     private Long id;
 
+    /**
+     * 用户账号.
+     */
     private String usercode;
 
+    /**
+     * 用户名称.
+     */
     private String username;
 
+    /**
+     * 用户密码.
+     */
     private String password;
 
-    private Date createtime;
+    /**
+     * 创建时间.
+     */
+    private Date createTime;
 
-    private Date updatetime;
+    /**
+     * 更新时间.
+     */
+    private Date updateTime;
+
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     @Column(name = "usercode")
     public String getUsercode() {
+
         return usercode;
     }
 
     public void setUsercode(String usercode) {
+
         this.usercode = usercode;
     }
 
     @Column(name = "username")
     public String getUsername() {
+
         return username;
     }
 
     public void setUsername(String username) {
+
         this.username = username;
     }
 
     @Column(name = "password")
     public String getPassword() {
+
         return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
-    @Column(name = "createtime")
-    public Date getCreatetime() {
-        return createtime;
+    @Column(name = "create_time")
+    public Date getCreateTime() {
+
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+
+        this.createTime = createTime;
     }
 
-    @Column(name = "updatetime")
-    public Date getUpdatetime() {
-        return updatetime;
+    @Column(name = "update_time")
+    public Date getUpdateTime() {
+
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+
+        this.updateTime = updateTime;
     }
 }
