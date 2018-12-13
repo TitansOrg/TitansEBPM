@@ -146,7 +146,7 @@
                                                 <a href="#" class="btn btn-default btn-flat">个人信息</a>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="#" class="btn btn-default btn-flat">退出系统</a>
+                                                <a href="<%=serverName%>login/loginOut.do" class="btn btn-default btn-flat">退出系统</a>
                                             </div>
                                         </li>
                                     </ul>
