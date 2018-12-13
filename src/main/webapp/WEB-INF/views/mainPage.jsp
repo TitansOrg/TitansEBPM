@@ -36,11 +36,13 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">用户管理</a></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/user/sysUserList.do');">用户管理</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">角色管理</a></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/role/sysRoleList.do');">角色管理</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">权限管理</a></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/dept/sysDeptList.do');">部门管理</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/auth/authList.do');">权限管理</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -175,8 +177,6 @@
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
     <script src="<%=serverName%>/js/mainPage/mainPage.js"></script>
-    <!-- AdminLTE for demo purposes
-    <script src="../../dist/js/demo.js"></script> -->
     <script>
         $(function() {
 
@@ -184,15 +184,31 @@
             $("#mainContentWrapper").height(bodyHeight - 101);
             $("#mainContainer").height(bodyHeight - 101);
             $("#mainFrame").height(bodyHeight - 101);
-           
         });
-        
-        function changeFrameHeight(){
+        function changeFrameHeight() {
+
             var height = document.documentElement.clientHeight-101;
-            $("#mainFrame").css('cssText','height:'+ height+'px !important;')
-            $("#mainFrame").css('height',height+'px !important;')
+            $("#mainFrame").css('cssText', 'height:' + height + 'px !important;');
+            $("#mainFrame").css('height', height + 'px !important;');
         }
-        window.onresize=function(){ changeFrameHeight();}
-        $(function(){changeFrameHeight();});
+        window.onresize = function() {
+
+            changeFrameHeight();
+        }
+        $(function() {
+
+            changeFrameHeight();
+        });
+
+        function openMenu(url) {
+
+            $("#mainFrame").attr("src", url);
+        }
+
+        function refreshFrame() {
+
+            var url = $("#mainFrame").attr("src");
+            $("#mainFrame").attr("src", url);
+        }
     </script>
 </html>
