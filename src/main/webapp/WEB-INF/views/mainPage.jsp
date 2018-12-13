@@ -188,9 +188,18 @@
         function changeFrameHeight() {
 
             var height = document.documentElement.clientHeight-101;
+<<<<<<< HEAD
             $("#mainFrame").css('cssText', 'height:' + height + 'px !important;');
             $("#mainFrame").css('height', height + 'px !important;');
+=======
+            if($("body").height() - 101 > height) {
+                height = $("body").height() - 101;
+            }
+            $("#mainFrame").css('cssText','height:'+ height+'px !important;')
+            $("#mainFrame").css('height',height+'px !important;')
+>>>>>>> branch 'master' of https://github.com/TitansOrg/TitansEBPM.git
         }
+<<<<<<< HEAD
         window.onresize = function() {
 
             changeFrameHeight();
@@ -210,5 +219,11 @@
             var url = $("#mainFrame").attr("src");
             $("#mainFrame").attr("src", url);
         }
+=======
+        window.onresize=function(){ 
+            changeFrameHeight();
+        }
+        $(function(){changeFrameHeight();});
+>>>>>>> branch 'master' of https://github.com/TitansOrg/TitansEBPM.git
     </script>
 </html>
