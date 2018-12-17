@@ -160,10 +160,10 @@
                 <config>dev</config>
                 <jdbc.driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc.driver>
                 <jdbc.url>
-                    <![CDATA[jdbc:sqlserver://192.168.137.145\:1433;databaseName=ArisPub]]>
+                    <![CDATA[jdbc:sqlserver://basdb:1433;databaseName=ArisPub]]>
                 </jdbc.url>
-                <jdbc.username>shangjc</jdbc.username>
-                <jdbc.password>Shang1234</jdbc.password>
+                <jdbc.username>AutoDeployAdmin</jdbc.username>
+                <jdbc.password>KH2oydrA</jdbc.password>
                 <log4j.path>/data/logs/tomcat</log4j.path>
             </properties>
         </profile>

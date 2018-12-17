@@ -1,6 +1,7 @@
 package org.titans.service.sys.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,12 @@ public class SysDeptServiceImpl implements ISysDeptService {
 
             sysDeptDao.deleteSysDeptInfo(sysDepts.get(i));
         }
+    }
+
+    @Override
+    public List<Map<String, String>> getAllDeptInfo() {
+        List<Map<String, String>> allDeptInfo = sysDeptDao.getAllDeptInfo();
+        JSON.toJSONString(allDeptInfo);
+        return allDeptInfo;
     }
 }

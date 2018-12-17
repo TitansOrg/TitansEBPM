@@ -2,6 +2,7 @@ package org.titans.controller.sys;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,6 +49,15 @@ public class SysDeptController {
         return list;
     }
 
+    @AuthenPassport
+    @ResponseBody
+    @RequestMapping(value = "getAllDept")
+    public List<Map<String, String>> getAllDept() {
+
+        List<Map<String, String>> allDeptInfo = sysDeptService.getAllDeptInfo();
+        return allDeptInfo;
+    }
+    
     @AuthenPassport
     @RequestMapping(value = "sysDeptDetail")
     public ModelAndView sysDeptDetail(HttpServletRequest request) {

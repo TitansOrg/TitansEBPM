@@ -41,6 +41,8 @@
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/role/sysRoleList.do');">角色管理</a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/dept/sysDeptList.do');">部门管理</a></li>
+                                         <li class="divider"></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/post/sysPostList.do');">岗位管理</a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/auth/authList.do');">权限管理</a></li>
                                     </ul>
@@ -146,7 +148,7 @@
                                                 <a href="#" class="btn btn-default btn-flat">个人信息</a>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="#" class="btn btn-default btn-flat">退出系统</a>
+                                                <a href="<%=serverName%>/login/loginOut.do" class="btn btn-default btn-flat">退出系统</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -177,6 +179,7 @@
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
     <script src="<%=serverName%>/js/mainPage/mainPage.js"></script>
+    <script src="<%=serverName%>/js/titans/CommonUtils.js"></script>
     <script>
         $(function() {
 
@@ -188,18 +191,14 @@
         function changeFrameHeight() {
 
             var height = document.documentElement.clientHeight-101;
-<<<<<<< HEAD
             $("#mainFrame").css('cssText', 'height:' + height + 'px !important;');
             $("#mainFrame").css('height', height + 'px !important;');
-=======
             if($("body").height() - 101 > height) {
                 height = $("body").height() - 101;
             }
             $("#mainFrame").css('cssText','height:'+ height+'px !important;')
             $("#mainFrame").css('height',height+'px !important;')
->>>>>>> branch 'master' of https://github.com/TitansOrg/TitansEBPM.git
         }
-<<<<<<< HEAD
         window.onresize = function() {
 
             changeFrameHeight();
@@ -219,11 +218,8 @@
             var url = $("#mainFrame").attr("src");
             $("#mainFrame").attr("src", url);
         }
-=======
         window.onresize=function(){ 
             changeFrameHeight();
         }
-        $(function(){changeFrameHeight();});
->>>>>>> branch 'master' of https://github.com/TitansOrg/TitansEBPM.git
     </script>
 </html>
