@@ -82,6 +82,7 @@
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
     <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
+    <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
     <script>
         $(function () {
 
@@ -128,6 +129,24 @@
                     render : function(data, type, row) {
 
                         return "<input type='checkbox' class='checkbox icheck' value='" + data + "'>";
+                    }
+                },{
+                    searchable : false,
+                    orderable : false,
+                    targets : 4,
+                    className: "table-cell-style",
+                    render : function(data, type, row) {
+
+                        return getSmpFormatDateByLong(data,false);
+                    }
+                },{
+                    searchable : false,
+                    orderable : false,
+                    targets : 5,
+                    className: "table-cell-style",
+                    render : function(data, type, row) {
+
+                        return getSmpFormatDateByLong(data,false);
                     }
                 }]
             });

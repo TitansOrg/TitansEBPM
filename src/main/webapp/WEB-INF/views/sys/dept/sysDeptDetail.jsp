@@ -63,6 +63,7 @@
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
+    <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
     <script>
         $(function() {
 
@@ -99,8 +100,8 @@
 
                         $("#code").val(data.code);
                         $("#name").val(data.name);
-                        $("#createTime").val(data.createTime);
-                        $("#updateTime").val(data.updateTime);
+                        $("#createTime").val(getSmpFormatDateByLong(data.createTime,false));
+                        $("#updateTime").val(getSmpFormatDateByLong(data.updateTime,false));
                     }
                 });
             }

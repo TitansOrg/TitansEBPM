@@ -53,6 +53,19 @@ public class LoginController {
     }
 
     /**
+     * 用户登出.
+     * @param usercode 账号
+     * @param password 密码
+     * @return 登录结果
+     */
+    @RequestMapping(value = "loginOut")
+    public String loginOut(HttpServletRequest request) {
+
+        SessionUtil.removeAttr(request, SessionUtil.CURR_USER_INFO);
+        return "forward:/index.jsp";
+    }
+
+    /**
      * 
      * @param request
      * @return

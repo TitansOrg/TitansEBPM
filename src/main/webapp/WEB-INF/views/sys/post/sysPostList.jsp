@@ -6,7 +6,7 @@
 <html style="height:100%;padding:0px;margin:0;">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>部门管理表</title>
+        <title>岗位信息表</title>
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/font-awesome/font-awesome.css">
         <link rel="stylesheet" href="<%=serverName%>/css/ionicons/ionicons.min.css">
@@ -35,7 +35,7 @@
     </head>
     <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
         <section class="content-header">
-            <h1>部门管理表</h1>
+            <h1>岗位信息表</h1>
             <ol class="breadcrumb">
                 <li><i class="fa fa-dashboard"></i> 首页</li>
                 <li>系统管理</li>
@@ -59,8 +59,8 @@
                                         <th style="width:50px;text-align:center;">
                                             <input type="checkbox" class="checkbox icheck">
                                         </th>
-                                        <th>部门编号</th>
-                                        <th>部门名称</th>
+                                        <th>岗位名称</th>
+                                        <th>部门</th>
                                         <th>创建时间</th>
                                         <th>更新时间</th>
                                     </tr>
@@ -82,9 +82,13 @@
     <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
-    <script>
-        $(function () {
+    <script src="<%=serverName%>/js/titans/CommonUtils.js"></script>
 
+    <script>
+        var serverName = "<%=serverName%>";
+        $(function () {
+            var c = new CommonUtils();
+            var deptMap = c.getDepart();
             var table = $("#dataTable").DataTable({
 
                 language: {
@@ -105,7 +109,7 @@
                 autoWidth : true,
                 ajax : {
 
-                    url : "<%=serverName%>/dept/getSysDeptList.do",
+                    url : "<%=serverName%>/post/getSysPostList.do",
                     dataSrc : ""
                 },
                 order : [[1, "asc"]],
@@ -113,8 +117,8 @@
                 columns : [
 
                     {data: "id"},
-                    {data: "code"},
                     {data: "name"},
+                    {data: "deptId"},
                     {data: "createTime"},
                     {data: "updateTime"}
                 ],
@@ -132,6 +136,15 @@
 
                     searchable : true,
                     orderable : false,
+                    targets : 2,
+                    className: "table-cell-style",
+                    render : function(data, type, row) {
+
+                        return deptMap[data];
+                    }
+                },{
+                    searchable : false,
+                    orderable : false,
                     targets : 3,
                     className: "table-cell-style",
                     render : function(data, type, row) {
@@ -147,7 +160,7 @@
 
                         return getSmpFormatDateByLong(data,false);
                     }
-                },]
+                }]
             });
             $('#dataTable').on('draw.dt',function() {
 
@@ -163,7 +176,7 @@
             var options = {
 
                 title : "详细信息",
-                url : "<%=serverName%>/dept/sysDeptDetail.do",
+                url : "<%=serverName%>/post/sysPostDetail.do",
                 height : 500,
                 width : 1000
             }
@@ -182,7 +195,7 @@
                 var options = {
 
                     title : "详细信息",
-                    url : "<%=serverName%>/dept/sysDeptDetail.do",
+                    url : "<%=serverName%>/post/sysPostDetail.do",
                     height : 500,
                     width : 1000,
                     param: {
@@ -210,7 +223,7 @@
 
                     type: "POST",
                     dataType:"json",
-                    url: "<%=serverName%>/dept/removeData.do",
+                    url: "<%=serverName%>/post/removeData.do",
                     data: {
 
                         ids : JSON.stringify(ids)

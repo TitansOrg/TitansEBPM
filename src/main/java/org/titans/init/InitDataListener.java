@@ -2,10 +2,7 @@ package org.titans.init;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
