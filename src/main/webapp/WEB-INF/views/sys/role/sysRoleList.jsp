@@ -60,7 +60,6 @@
                                             <input type="checkbox" class="checkbox icheck">
                                         </th>
                                         <th>角色名称</th>
-                                        <th>部门表主键</th>
                                         <th>创建时间</th>
                                         <th>更新时间</th>
                                     </tr>
@@ -81,6 +80,7 @@
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
     <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
+    <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
     <script>
         $(function () {
 
@@ -113,7 +113,6 @@
 
                     {data: "id"},
                     {data: "name"},
-                    {data: "deptId"},
                     {data: "createTime"},
                     {data: "updateTime"}
                 ],
@@ -126,6 +125,25 @@
                     render : function(data, type, row) {
 
                         return "<input type='checkbox' class='checkbox icheck' value='" + data + "'>";
+                    }
+                },{
+
+                    searchable : false,
+                    orderable : false,
+                    targets : 2,
+                    className: "table-cell-style",
+                    render : function(data, type, row) {
+
+                        return getSmpFormatDateByLong(data,false);
+                    }
+                },{
+                    searchable : false,
+                    orderable : false,
+                    targets : 3,
+                    className: "table-cell-style",
+                    render : function(data, type, row) {
+
+                        return getSmpFormatDateByLong(data,false);
                     }
                 }]
             });

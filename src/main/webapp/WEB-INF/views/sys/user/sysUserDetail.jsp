@@ -37,6 +37,10 @@
                     <input type="text" class="form-control" id="password" placeholder="用户密码">
                 </div>
             </div>
+            <div class="form-group" >
+                <label class="col-sm-2 control-label text-center">角色</label>
+                <div class="col-sm-6" id="roleList" ></div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">创建时间</label>
                 <div class="col-sm-6">
@@ -85,6 +89,21 @@
                 format: "yyyy-mm-dd",
                 autoclose: true
             });
+            //初始化角色列表
+            $.ajax({
+
+                type: "POST",
+                dataType:"json",
+                url: "<%=serverName%>/role/getSysRoleList.do",
+                success: function(data) {
+                    for ( var i = 0; i < data.length; i++) {
+
+                        $("#roleList").append("<label>");
+                        $("#roleList").append("<input type='checkbox' name='roles' value='" + data[i].id+"'>" + data[i].name+ "&nbsp;&nbsp;");
+                        $("#roleList").append("</label>");
+                   }
+                }
+            });
             pageDataInit();
         });
 
@@ -115,7 +134,12 @@
         }
 
         function toSubmit(dialog, id) {
+            var id_array= new Array();  
 
+            $('input[name="roles"]:checked').each(function(){  
+                id_array.push($(this).val());//向数组中添加元素  
+            });  
+            var userRoles=id_array.join(',');
             var param = {
 
                 id : $("#id").val(),
@@ -131,7 +155,7 @@
                 dataType:"json",
                 contentType: "application/json",
                 url: "<%=serverName%>/user/saveOrUpdate.do",
-                data: JSON.stringify(param),
+                data: {sysUser:JSON.stringify(param),userRoles:userRoles},
                 success: function(data) {
 
                     if (data) {

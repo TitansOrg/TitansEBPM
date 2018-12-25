@@ -47,9 +47,9 @@ public class SysDeptBean {
     private Date updateTime;
 
     /**
-     * 所属角色.
+     * 拥有岗位.
      */
-    private List<SysRoleBean> sysRoleList = new ArrayList<>();
+    private List<SysPostBean> sysPostList = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -108,14 +108,14 @@ public class SysDeptBean {
         this.updateTime = updateTime;
     }
 
+    public void setSysPostList(List<SysPostBean> sysPostList) {
+        this.sysPostList = sysPostList;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "deptId")
-    public List<SysRoleBean> getSysRoleList() {
+    public List<SysPostBean> getSysPostList() {
 
-        return sysRoleList;
+        return sysPostList;
     }
-
-    public void setSysRoleList(List<SysRoleBean> sysRoleList) {
-
-        this.sysRoleList = sysRoleList;
-    }
+    
 }

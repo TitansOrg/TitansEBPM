@@ -26,12 +26,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label text-center">部门表主键</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="deptId" placeholder="部门表主键">
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-sm-2 control-label">创建时间</label>
                 <div class="col-sm-6">
                     <div class="input-group date">
@@ -63,6 +57,7 @@
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
+    <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
     <script>
         $(function() {
 
@@ -99,8 +94,8 @@
 
                         $("#name").val(data.name);
                         $("#deptId").val(data.deptId);
-                        $("#createTime").val(data.createTime);
-                        $("#updateTime").val(data.updateTime);
+                        $("#createTime").val(getSmpFormatDateByLong(data.createTime,false));
+                        $("#updateTime").val(getSmpFormatDateByLong(data.updateTime,false));
                     }
                 });
             }

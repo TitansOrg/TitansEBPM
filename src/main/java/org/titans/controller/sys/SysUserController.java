@@ -2,6 +2,7 @@ package org.titans.controller.sys;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.titans.annotation.AuthenPassport;
 import org.titans.bean.sys.SysUserBean;
+import org.titans.bean.sys.SysUserRole;
 import org.titans.service.sys.ISysUserService;
 
 import com.alibaba.fastjson.JSON;
@@ -67,7 +69,7 @@ public class SysUserController {
     @AuthenPassport
     @ResponseBody
     @RequestMapping(value = "saveOrUpdate")
-    public boolean saveOrUpdate(@RequestBody SysUserBean sysUser) {
+    public boolean saveOrUpdate(SysUserBean sysUser,String userRoles) {
 
         boolean result = true;
         try {

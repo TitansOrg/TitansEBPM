@@ -1,13 +1,21 @@
 package org.titans.bean.sys;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 用户管理表.
@@ -46,6 +54,7 @@ public class SysUserBean {
      */
     private Date updateTime;
 
+    private Set<SysUserRole> userRoleSet = new HashSet<SysUserRole>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -114,4 +123,16 @@ public class SysUserBean {
 
         this.updateTime = updateTime;
     }
+
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="sys_user_id")
+    @JsonIgnore
+    public Set<SysUserRole> getUserRoleSet() {
+        return userRoleSet;
+    }
+
+    public void setUserRoleSet(Set<SysUserRole> userRoleSet) {
+        this.userRoleSet = userRoleSet;
+    }
+    
 }

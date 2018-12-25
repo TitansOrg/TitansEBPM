@@ -114,4 +114,6 @@ public class SysPostBean {
 
         this.updateTime = updateTime;
     }
+
+    
 }

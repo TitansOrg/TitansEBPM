@@ -27,11 +27,6 @@ public class SysRoleBean {
     private String name;
 
     /**
-     * 部门表主键.
-     */
-    private Long deptId;
-
-    /**
      * 创建时间.
      */
     private Date createTime;
@@ -64,17 +59,6 @@ public class SysRoleBean {
     public void setName(String name) {
 
         this.name = name;
-    }
-
-    @Column(name = "dept_id")
-    public Long getDeptId() {
-
-        return deptId;
-    }
-
-    public void setDeptId(Long deptId) {
-
-        this.deptId = deptId;
     }
 
     @Column(name = "create_time")

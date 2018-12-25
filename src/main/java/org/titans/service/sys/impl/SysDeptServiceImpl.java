@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.titans.bean.sys.SysDeptBean;
+import org.titans.bean.sys.SysPostBean;
 import org.titans.bean.sys.SysRoleBean;
 import org.titans.dao.sys.ISysDeptDao;
 import org.titans.service.sys.ISysDeptService;
@@ -31,11 +32,11 @@ public class SysDeptServiceImpl implements ISysDeptService {
     public SysDeptBean queryDetailInfoById(String id) {
 
         SysDeptBean sysDept = sysDeptDao.queryDetailInfoById(id);
-        List<SysRoleBean> roleList = sysDept.getSysRoleList();
-        for (int i = 0; i < roleList.size(); i++) {
+        List<SysPostBean> postList = sysDept.getSysPostList();
+        for (int i = 0; i < postList.size(); i++) {
 
-            SysRoleBean sysRole = roleList.get(i);
-            Hibernate.initialize(sysRole);
+            SysPostBean sysPostBean = postList.get(i);
+            Hibernate.initialize(sysPostBean);
         }
         return sysDept;
     }
