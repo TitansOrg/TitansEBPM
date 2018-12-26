@@ -134,28 +134,31 @@
         }
 
         function toSubmit(dialog, id) {
-            var id_array= new Array();  
-
+            var id_array = new Array();
             $('input[name="roles"]:checked').each(function(){  
-                id_array.push($(this).val());//向数组中添加元素  
-            });  
-            var userRoles=id_array.join(',');
-            var param = {
 
-                id : $("#id").val(),
-                usercode : $("#usercode").val(),
-                username : $("#username").val(),
-                password : $("#password").val(),
-                createTime : $("#createTime").val(),
-                updateTime : $("#updateTime").val()
+                id_array.push($(this).val());
+            });
+            var param = {
+                sysUser:[
+                          {
+                             id : $("#id").val(),
+                             usercode : $("#usercode").val(),
+                             username : $("#username").val(),
+                             password : $("#password").val(),
+                             createTime : $("#createTime").val(),
+                             updateTime : $("#updateTime").val()
+                          }
+                      ],
+                userRoles : id_array
             };
             $.ajax({
 
                 type: "POST",
                 dataType:"json",
-                contentType: "application/json",
+                contentType: "application/json;charset=utf-8",
                 url: "<%=serverName%>/user/saveOrUpdate.do",
-                data: {sysUser:JSON.stringify(param),userRoles:userRoles},
+                data: JSON.stringify(param),
                 success: function(data) {
 
                     if (data) {

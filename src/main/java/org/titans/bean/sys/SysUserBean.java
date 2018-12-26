@@ -1,7 +1,9 @@
 package org.titans.bean.sys;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -55,6 +57,10 @@ public class SysUserBean {
     private Date updateTime;
 
     private Set<SysUserRole> userRoleSet = new HashSet<SysUserRole>();
+
+    public SysUserBean(){
+
+    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -134,5 +140,5 @@ public class SysUserBean {
     public void setUserRoleSet(Set<SysUserRole> userRoleSet) {
         this.userRoleSet = userRoleSet;
     }
-    
+
 }
