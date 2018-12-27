@@ -128,6 +128,15 @@
                         $("#password").val(data.password);
                         $("#createTime").val(getSmpFormatDateByLong(data.createTime,false));
                         $("#updateTime").val(getSmpFormatDateByLong(data.updateTime,false));
+                        var roles = data.userRoleSet;
+                        for(var i=0;i<roles.length;i++){
+
+                            $('input[name="roles"]').each(function(){ 
+                                if($(this).val() == roles[i].roleId) {
+                                    $(this).attr("checked", true);
+                                }
+                            });
+                        }
                     }
                 });
             }
@@ -141,15 +150,15 @@
             });
             var param = {
                 sysUser:[
-                          {
-                             id : $("#id").val(),
-                             usercode : $("#usercode").val(),
-                             username : $("#username").val(),
-                             password : $("#password").val(),
-                             createTime : $("#createTime").val(),
-                             updateTime : $("#updateTime").val()
-                          }
-                      ],
+                    {
+                       id : $("#id").val() == "null" ? "": $("#id").val(),
+                       usercode : $("#usercode").val(),
+                       username : $("#username").val(),
+                       password : $("#password").val(),
+                       createTime : $("#createTime").val(),
+                       updateTime : $("#updateTime").val()
+                    }
+                ],
                 userRoles : id_array
             };
             $.ajax({

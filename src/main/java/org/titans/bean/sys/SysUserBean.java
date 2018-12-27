@@ -29,42 +29,50 @@ public class SysUserBean {
     /**
      * 表主键.
      */
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 用户账号.
      */
+    @Column(name = "usercode")
     private String usercode;
 
     /**
      * 用户名称.
      */
+    @Column(name = "username")
     private String username;
 
     /**
      * 用户密码.
      */
+    @Column(name = "password")
     private String password;
 
     /**
      * 创建时间.
      */
+    @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新时间.
      */
+    @Column(name = "update_time")
     private Date updateTime;
 
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="sys_user_id")
+    @JsonIgnore
     private Set<SysUserRole> userRoleSet = new HashSet<SysUserRole>();
 
     public SysUserBean(){
 
     }
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id")
+   
     public Long getId() {
 
         return id;
@@ -75,7 +83,7 @@ public class SysUserBean {
         this.id = id;
     }
 
-    @Column(name = "usercode")
+   
     public String getUsercode() {
 
         return usercode;
@@ -86,7 +94,7 @@ public class SysUserBean {
         this.usercode = usercode;
     }
 
-    @Column(name = "username")
+   
     public String getUsername() {
 
         return username;
@@ -97,7 +105,7 @@ public class SysUserBean {
         this.username = username;
     }
 
-    @Column(name = "password")
+    
     public String getPassword() {
 
         return password;
@@ -108,7 +116,7 @@ public class SysUserBean {
         this.password = password;
     }
 
-    @Column(name = "create_time")
+    
     public Date getCreateTime() {
 
         return createTime;
@@ -119,7 +127,7 @@ public class SysUserBean {
         this.createTime = createTime;
     }
 
-    @Column(name = "update_time")
+    
     public Date getUpdateTime() {
 
         return updateTime;
@@ -130,9 +138,7 @@ public class SysUserBean {
         this.updateTime = updateTime;
     }
 
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name="sys_user_id")
-    @JsonIgnore
+    
     public Set<SysUserRole> getUserRoleSet() {
         return userRoleSet;
     }

@@ -10,7 +10,7 @@ public interface ISysUserService {
 
     List<SysUserBean> queryAllSysUserInfo();
 
-    SysUserBean queryDetailInfoById(String id);
+    String queryDetailInfoById(String id);
 
     void saveOrUpdateSysUserInfo(SysUserBean sysUser);
 

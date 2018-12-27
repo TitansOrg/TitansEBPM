@@ -13,7 +13,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class SysUserRole  {
 
     @Id
-    @Column(name = "id",length =36)
     @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid")
     private String id;
     
@@ -23,10 +22,14 @@ public class SysUserRole  {
     @Column(name = "sys_role_id", length = 32)
     private String roleId;
     
-    public SysUserRole() {
-
-    }
+    //private  SysUserBean sysUserBean;
    
+    public String getId() {
+        return id;
+    }
+    
+
+    
     public String getUserId() {
         return userId;
     }
@@ -34,7 +37,12 @@ public class SysUserRole  {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-   
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
     public String getRoleId() {
         return roleId;
     }
@@ -43,13 +51,9 @@ public class SysUserRole  {
         this.roleId = roleId;
     }
    
-    public String getId() {
-        return id;
-    }
-    
-    public void setId(String id) {
-        this.id = id;
-    }
+   
+
+  
     
     
 }
