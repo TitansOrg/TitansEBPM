@@ -2,11 +2,15 @@ package org.titans.bean.sys;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +31,11 @@ public class SysRoleBean {
     private String name;
 
     /**
+     * 所属部门ID.
+     */
+    private SysDeptBean sysDept;
+
+    /**
      * 创建时间.
      */
     private Date createTime;
@@ -35,7 +44,6 @@ public class SysRoleBean {
      * 更新时间.
      */
     private Date updateTime;
-
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -81,5 +89,17 @@ public class SysRoleBean {
     public void setUpdateTime(Date updateTime) {
 
         this.updateTime = updateTime;
+    }
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch=FetchType.LAZY)
+    @JoinColumn(name = "dept_id")
+    public SysDeptBean getSysDept() {
+
+        return sysDept;
+    }
+
+    public void setSysDept(SysDeptBean sysDept) {
+
+        this.sysDept = sysDept;
     }
 }

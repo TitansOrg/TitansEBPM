@@ -6,9 +6,9 @@ import org.titans.bean.sys.SysUserBean;
 
 public interface ISysUserService {
 
-    SysUserBean checkUserLogin(String usercode, String password);
+    String checkUserLogin(String usercode, String password);
 
-    List<SysUserBean> queryAllSysUserInfo();
+    String queryAllSysUserInfo();
 
     String queryDetailInfoById(String id);
 

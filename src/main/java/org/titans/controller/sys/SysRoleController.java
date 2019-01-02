@@ -42,10 +42,10 @@ public class SysRoleController {
     @AuthenPassport
     @ResponseBody
     @RequestMapping(value = "getSysRoleList")
-    public List<SysRoleBean> getSysRoleList() {
+    public String getSysRoleList() {
 
-        List<SysRoleBean> list = sysRoleService.queryAllSysRoleInfo();
-        return list;
+        String json = sysRoleService.queryAllSysRoleInfo();
+        return json;
     }
 
     @AuthenPassport
@@ -58,10 +58,10 @@ public class SysRoleController {
     @AuthenPassport
     @ResponseBody
     @RequestMapping(value = "queryDetailInfoById")
-    public SysRoleBean queryDetailInfoById(String id) {
+    public String queryDetailInfoById(String id) {
 
-        SysRoleBean bean = sysRoleService.queryDetailInfoById(id);
-        return bean;
+        String json = sysRoleService.queryDetailInfoById(id);
+        return json;
     }
 
     @AuthenPassport

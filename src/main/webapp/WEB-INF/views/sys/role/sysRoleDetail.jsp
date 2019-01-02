@@ -11,10 +11,11 @@
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/font-awesome/font-awesome.css">
         <link rel="stylesheet" href="<%=serverName%>/css/ionicons/ionicons.min.css">
-        <link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
-        <link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/iCheck/square/blue.css">
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap-datepicker/bootstrap-datepicker.min.css">
+        <link rel="stylesheet" href="<%=serverName%>/css/select2/select2.min.css">
+        <link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
+        <link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
     </head>
     <body>
         <input id="id" type="hidden" value="<%=request.getParameter("id") %>"/>
@@ -23,6 +24,18 @@
                 <label class="col-sm-2 control-label text-center">角色名称</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" id="name" placeholder="角色名称">
+                </div>
+            </div>
+            <!-- 
+            <div class="form-group" >
+                <label class="col-sm-2 text-right">部门</label>
+                <div class="col-sm-6" id="deptList" ></div>
+            </div>
+             -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-center">部门</label>
+                <div class="col-sm-6">
+                    <select id="deptList" class="form-control select2"></select>
                 </div>
             </div>
             <div class="form-group">
@@ -53,6 +66,9 @@
     <script src="<%=serverName%>/js/bootstrap/bootstrap.min.js"></script>
     <script src="<%=serverName%>/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
+    <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
+    <script src="<%=serverName%>/js/select2/i18n/zh-CN.js"></script>
+    <script src="<%=serverName%>/js/select2/select2.full.min.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
@@ -61,6 +77,28 @@
     <script>
         $(function() {
 
+            $.ajax({
+
+                type: "POST",
+                dataType:"json",
+                url: "<%=serverName%>/dept/getSysDeptList.do",
+                success: function(data) {
+
+                    var options = [];
+                    for(var i = 0; i < data.length; i++) {
+
+                        options.push({id: data[i].id, text: data[i].name});
+                    }
+                    $("#deptList").select2({
+
+                        data: options,
+                        multiple: false,
+                        placeholder: "请选择部门",
+                        width:"460px"
+                    });
+                    pageDataInit();
+                }
+            });
             $('#createTime').datepicker({
 
                 language: "zh-CN",
@@ -73,7 +111,6 @@
                 format: "yyyy-mm-dd",
                 autoclose: true
             });
-            pageDataInit();
         });
 
         function pageDataInit() {
@@ -93,9 +130,9 @@
                     success: function(data) {
 
                         $("#name").val(data.name);
-                        $("#deptId").val(data.deptId);
                         $("#createTime").val(getSmpFormatDateByLong(data.createTime,false));
                         $("#updateTime").val(getSmpFormatDateByLong(data.updateTime,false));
+                        $('#deptList').val(data.sysDept.id).trigger("change");
                     }
                 });
             }
@@ -107,7 +144,7 @@
 
                 id : $("#id").val(),
                 name : $("#name").val(),
-                deptId : $("#deptId").val(),
+                sysDept : {id: $("#deptList").val()},
                 createTime : $("#createTime").val(),
                 updateTime : $("#updateTime").val()
             };

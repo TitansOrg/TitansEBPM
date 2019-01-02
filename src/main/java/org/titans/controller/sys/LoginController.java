@@ -14,6 +14,8 @@ import org.titans.bean.sys.SysUserBean;
 import org.titans.service.sys.ISysUserService;
 import org.titans.util.SessionUtil;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * 用户登录.
  */
@@ -40,7 +42,8 @@ public class LoginController {
     public boolean login(HttpServletRequest request, String usercode, String password) {
 
         boolean result = false;
-        SysUserBean user = sysUserService.checkUserLogin(usercode, password);
+        String str = sysUserService.checkUserLogin(usercode, password);
+        SysUserBean user = JSON.parseObject(str, SysUserBean.class);
         if (user == null) {
 
             result = false;
