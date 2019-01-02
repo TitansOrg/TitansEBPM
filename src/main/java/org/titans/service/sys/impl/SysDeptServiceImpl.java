@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.titans.bean.sys.SysDeptBean;
 import org.titans.bean.sys.SysPostBean;
+import org.titans.bean.sys.SysRoleBean;
 import org.titans.dao.sys.ISysDeptDao;
 import org.titans.service.sys.ISysDeptService;
 

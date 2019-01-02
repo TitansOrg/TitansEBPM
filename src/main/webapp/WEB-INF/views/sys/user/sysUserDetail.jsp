@@ -11,11 +11,10 @@
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/font-awesome/font-awesome.css">
         <link rel="stylesheet" href="<%=serverName%>/css/ionicons/ionicons.min.css">
-        <link rel="stylesheet" href="<%=serverName%>/css/iCheck/square/blue.css">
-        <link rel="stylesheet" href="<%=serverName%>/css/bootstrap-datepicker/bootstrap-datepicker.min.css">
-        <link rel="stylesheet" href="<%=serverName%>/css/select2/select2.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/AdminLTE.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/adminlet/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="<%=serverName%>/css/iCheck/square/blue.css">
+        <link rel="stylesheet" href="<%=serverName%>/css/bootstrap-datepicker/bootstrap-datepicker.min.css">
     </head>
     <body>
         <input id="id" type="hidden" value="<%=request.getParameter("id") %>"/>
@@ -38,11 +37,9 @@
                     <input type="text" class="form-control" id="password" placeholder="用户密码">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
                 <label class="col-sm-2 control-label text-center">角色</label>
-                <div class="col-sm-6">
-                    <select id="roleList" class="form-control select2"></select>
-                </div>
+                <div class="col-sm-6" id="roleList" ></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">创建时间</label>
@@ -72,9 +69,6 @@
     <script src="<%=serverName%>/js/bootstrap/bootstrap.min.js"></script>
     <script src="<%=serverName%>/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<%=serverName%>/js/fastclick/fastclick.js"></script>
-    <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
-    <script src="<%=serverName%>/js/select2/i18n/zh-CN.js"></script>
-    <script src="<%=serverName%>/js/select2/select2.full.min.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="<%=serverName%>/js/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
@@ -83,40 +77,34 @@
     <script>
         $(function() {
 
+            $('#createTime').datepicker({
+
+                language: "zh-CN",
+                format: "yyyy-mm-dd",
+                autoclose: true
+            });
+            $('#updateTime').datepicker({
+
+                language: "zh-CN",
+                format: "yyyy-mm-dd",
+                autoclose: true
+            });
+            //初始化角色列表
             $.ajax({
 
                 type: "POST",
                 dataType:"json",
                 url: "<%=serverName%>/role/getSysRoleList.do",
                 success: function(data) {
+                    for ( var i = 0; i < data.length; i++) {
 
-                    var options = [];
-                    for(var i = 0; i < data.length; i++) {
-
-                        options.push({id: data[i].id, text: data[i].name});
-                    }
-                    $("#roleList").select2({
-
-                        data: options,
-                        multiple: true,
-                        placeholder: "请选择角色",
-                        width:"460px"
-                    });
-                    pageDataInit();
+                        $("#roleList").append("<label>");
+                        $("#roleList").append("<input type='checkbox' name='roles' value='" + data[i].id+"'>" + data[i].name+ "&nbsp;&nbsp;");
+                        $("#roleList").append("</label>");
+                   }
                 }
             });
-            $("#createTime").datepicker({
-
-                language: "zh-CN",
-                format: "yyyy-mm-dd",
-                autoclose: true
-            });
-            $("#updateTime").datepicker({
-
-                language: "zh-CN",
-                format: "yyyy-mm-dd",
-                autoclose: true
-            });
+            pageDataInit();
         });
 
         function pageDataInit() {
@@ -140,44 +128,44 @@
                         $("#password").val(data.password);
                         $("#createTime").val(getSmpFormatDateByLong(data.createTime,false));
                         $("#updateTime").val(getSmpFormatDateByLong(data.updateTime,false));
-                        var roles = data.roles;
-                        var options = [];
-                        for (var i = 0; i < roles.length; i++) {
+                        var roles = data.userRoleSet;
+                        for(var i=0;i<roles.length;i++){
 
-                            options.push(roles[i].id);
+                            $('input[name="roles"]').each(function(){ 
+                                if($(this).val() == roles[i].roleId) {
+                                    $(this).attr("checked", true);
+                                }
+                            });
                         }
-                        $('#roleList').val(options).trigger('change');
                     }
                 });
             }
         }
 
         function toSubmit(dialog, id) {
+            var id_array = new Array();
+            $('input[name="roles"]:checked').each(function(){  
 
-            var roles = [];
-            $.each($("#roleList").val(), function(i, n) {
-
-                var role = {
-
-                    id : n,
-                }
-                roles.push(role);
+                id_array.push($(this).val());
             });
             var param = {
-
-                id : $("#id").val(),
-                usercode : $("#usercode").val(),
-                username : $("#username").val(),
-                password : $("#password").val(),
-                createTime : $("#createTime").val(),
-                updateTime : $("#updateTime").val(),
-                roles : roles
+                sysUser:[
+                    {
+                       id : $("#id").val() == "null" ? "": $("#id").val(),
+                       usercode : $("#usercode").val(),
+                       username : $("#username").val(),
+                       password : $("#password").val(),
+                       createTime : $("#createTime").val(),
+                       updateTime : $("#updateTime").val()
+                    }
+                ],
+                userRoles : id_array
             };
             $.ajax({
 
                 type: "POST",
                 dataType:"json",
-                contentType: 'application/json',
+                contentType: "application/json;charset=utf-8",
                 url: "<%=serverName%>/user/saveOrUpdate.do",
                 data: JSON.stringify(param),
                 success: function(data) {

@@ -32,8 +32,8 @@ public class InitDataListener implements InitializingBean, ServletContextAware {
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        //attrMap = initService.queryAttrs();
-        //attrTypeNumMap = initService.queryAttrTypeNum();
+        attrMap = initService.queryAttrs();
+        attrTypeNumMap = initService.queryAttrTypeNum();
     }
 
 }

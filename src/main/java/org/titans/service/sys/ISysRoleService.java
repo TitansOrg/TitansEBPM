@@ -6,9 +6,9 @@ import org.titans.bean.sys.SysRoleBean;
 
 public interface ISysRoleService {
 
-    String queryAllSysRoleInfo();
+    List<SysRoleBean> queryAllSysRoleInfo();
 
-    String queryDetailInfoById(String id);
+    SysRoleBean queryDetailInfoById(String id);
 
     void saveOrUpdateSysRoleInfo(SysRoleBean sysRole);
 

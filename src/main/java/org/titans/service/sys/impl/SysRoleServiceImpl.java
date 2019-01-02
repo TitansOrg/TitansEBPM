@@ -8,8 +8,6 @@ import org.titans.bean.sys.SysRoleBean;
 import org.titans.dao.sys.ISysRoleDao;
 import org.titans.service.sys.ISysRoleService;
 
-import com.alibaba.fastjson.JSON;
-
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
 
@@ -17,17 +15,15 @@ public class SysRoleServiceImpl implements ISysRoleService {
     private ISysRoleDao sysRoleDao;
 
     @Override
-    public String queryAllSysRoleInfo() {
+    public List<SysRoleBean> queryAllSysRoleInfo() {
 
-        List<SysRoleBean> list = sysRoleDao.queryAllSysRoleInfo();
-        return JSON.toJSONString(list);
+        return sysRoleDao.queryAllSysRoleInfo();
     }
 
     @Override
-    public String queryDetailInfoById(String id) {
+    public SysRoleBean queryDetailInfoById(String id) {
 
-        SysRoleBean role = sysRoleDao.queryDetailInfoById(id);
-        return JSON.toJSONString(role);
+        return sysRoleDao.queryDetailInfoById(id);
     }
 
     @Override

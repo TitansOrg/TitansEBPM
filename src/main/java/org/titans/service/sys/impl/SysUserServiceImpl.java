@@ -1,10 +1,14 @@
 package org.titans.service.sys.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.titans.bean.sys.SysUserBean;
+import org.titans.bean.sys.SysUserRole;
 import org.titans.dao.sys.ISysUserDao;
 import org.titans.dao.sys.ISysUserRoleDao;
 import org.titans.service.sys.ISysUserService;
@@ -21,30 +25,32 @@ public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     private ISysUserRoleDao sysUserRoleDao;
 
-    public String checkUserLogin(String userCode, String password) {
+    public SysUserBean checkUserLogin(String userCode, String password) {
 
         SysUserBean user = sysUserDao.querySysUserByCode(userCode, password);
-        
-        return JSON.toJSONString(user);
+        return user;
     }
 
     @Override
-    public String queryAllSysUserInfo() {
+    public List<SysUserBean> queryAllSysUserInfo() {
 
-        List<SysUserBean> list = sysUserDao.queryAllSysUserInfo();
-        return JSON.toJSONString(list);
+        return sysUserDao.queryAllSysUserInfo();
     }
 
     @Override
     public String queryDetailInfoById(String id) {
-
         SysUserBean sysUserBean = sysUserDao.queryDetailInfoById(id);
+        sysUserBean.getUserRoleSet();
         return JSON.toJSONString(sysUserBean, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @Override
     public void saveOrUpdateSysUserInfo(SysUserBean sysUser) {
-
+        //先清空原来的角色
+        if(sysUser.getId() != null && sysUser.getUserRoleSet().size() > 0 ){
+            
+            sysUserRoleDao.removeSysUserRole(sysUser.getId().toString());
+        }
         sysUserDao.saveOrUpdateSysUserInfo(sysUser);
     }
 
