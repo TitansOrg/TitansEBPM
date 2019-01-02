@@ -1,9 +1,7 @@
 package org.titans.controller.sys;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,12 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.titans.annotation.AuthenPassport;
 import org.titans.bean.sys.SysUserBean;
-import org.titans.bean.sys.SysUserRole;
 import org.titans.service.sys.ISysUserService;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -46,10 +42,10 @@ public class SysUserController {
     @AuthenPassport
     @ResponseBody
     @RequestMapping(value = "getSysUserList")
-    public List<SysUserBean> getSysUserList() {
+    public String getSysUserList() {
 
-        List<SysUserBean> list = sysUserService.queryAllSysUserInfo();
-        return list;
+        String str = sysUserService.queryAllSysUserInfo();
+        return str;
     }
 
     @AuthenPassport
@@ -71,22 +67,8 @@ public class SysUserController {
     @AuthenPassport
     @ResponseBody
     @RequestMapping(value = "saveOrUpdate")
-    public boolean saveOrUpdate(@RequestBody String data) throws Exception {
-        //提供json格式转java对象
-        JSONObject json= JSONObject.parseObject(data);
-        JSONArray sysUserArray = (JSONArray) json.get("sysUser");
-        JSONObject sysUserObj=JSONObject.parseObject(sysUserArray.get(0).toString());
-        SysUserBean sysUser=(SysUserBean)JSONObject.toJavaObject(sysUserObj, SysUserBean.class);
-        JSONArray roleIds = (JSONArray) json.get("userRoles");
-        // 保存角色
-        if (roleIds.size() > 0) {
-            for(int i = 0;i<roleIds.size();i++) {
-                Object roleId = roleIds.get(i);
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setRoleId(roleId.toString());
-                sysUser.getUserRoleSet().add(sysUserRole);
-            }
-        }
+    public boolean saveOrUpdate(@RequestBody SysUserBean sysUser) {
+
         boolean result = true;
         try {
 
