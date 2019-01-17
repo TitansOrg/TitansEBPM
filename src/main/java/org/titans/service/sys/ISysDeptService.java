@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.titans.bean.sys.SysDeptBean;
+import org.titans.core.service.BaseService;
 
-public interface ISysDeptService {
-
-    List<SysDeptBean> queryAllSysDeptInfo();
+public interface ISysDeptService extends BaseService<SysDeptBean> {
 
     SysDeptBean queryDetailInfoById(String id);
-
-    void saveOrUpdateSysDeptInfo(SysDeptBean sysDept);
 
     void removeSysDeptInfo(List<SysDeptBean> sysDept);
 

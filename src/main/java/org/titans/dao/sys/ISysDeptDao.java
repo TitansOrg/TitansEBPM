@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.titans.bean.sys.SysDeptBean;
+import org.titans.core.dao.IBaseDao;
 
-public interface ISysDeptDao {
-
-    List<SysDeptBean> queryAllSysDeptInfo();
+public interface ISysDeptDao extends IBaseDao<SysDeptBean>{
 
     SysDeptBean queryDetailInfoById(String id);
-
-    void saveOrUpdateSysDeptInfo(SysDeptBean sysDept);
 
     void deleteSysDeptInfo(SysDeptBean sysDept);
 

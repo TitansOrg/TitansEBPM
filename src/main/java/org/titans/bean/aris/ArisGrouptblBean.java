@@ -33,7 +33,7 @@ public class ArisGrouptblBean {
     /**
      * 最后更改.
      */
-    private Short lastUpdated;
+    private Long lastUpdated;
     /**
      * 特性明细表集合.
      */
@@ -72,7 +72,7 @@ public class ArisGrouptblBean {
      * @return 对应字段
      */
     @Column(name = "last_updated", nullable = true, length = 20)
-    public Short getLastUpdated() {
+    public Long getLastUpdated() {
         return lastUpdated;
     }
 
@@ -109,7 +109,7 @@ public class ArisGrouptblBean {
     /**
      * @param lastUpdated the lastUpdated to set
      */
-    public void setLastUpdated(Short lastUpdated) {
+    public void setLastUpdated(Long lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

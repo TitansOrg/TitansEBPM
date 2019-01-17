@@ -29,7 +29,7 @@
         <property name="maxWait" value="60000" />
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
         <property name="minEvictableIdleTimeMillis" value="300000" />
-        <property name="validationQuery" value="SELECT TOP 1[id],[obj_def_id],[model_id] FROM [ArisPub].[dbo].[aris_assignment]" />
+        <property name="validationQuery" value="SELECT id,obj_def_id,model_id FROM aris_assignment limit 0,1" />
         <property name="testWhileIdle" value="true" />
         <property name="testOnBorrow" value="false" />
         <property name="testOnReturn" value="false" />
@@ -78,7 +78,7 @@
         </tx:attributes>
     </tx:advice>
     <aop:config expose-proxy="true">
-        <aop:pointcut id="txPointcut" expression="execution(* org.titans.service..*.*(..))" />
+        <aop:pointcut id="txPointcut" expression="execution(* org.titans.service..*.*(..)) or execution(* org.titans.core.service..*.*(..))" />
         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>
     <!-- <import resource="spring-quartz.xml"/> -->

@@ -45,7 +45,7 @@ public class SysDeptController {
     @RequestMapping(value = "getSysDeptList")
     public List<SysDeptBean> getSysDeptList() {
 
-        List<SysDeptBean> list = sysDeptService.queryAllSysDeptInfo();
+        List<SysDeptBean> list = sysDeptService.getAll();
         return list;
     }
 
@@ -82,7 +82,7 @@ public class SysDeptController {
         boolean result = true;
         try {
 
-            sysDeptService.saveOrUpdateSysDeptInfo(sysDept);
+            sysDeptService.saveOrUpdate(sysDept);
         } catch (Exception e) {
 
             log.error("保存或更新数据" + JSON.toJSONString(sysDept) + "时发生异常，" + e.getMessage(), e);
