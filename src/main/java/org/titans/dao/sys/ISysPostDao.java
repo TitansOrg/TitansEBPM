@@ -1,16 +1,11 @@
 package org.titans.dao.sys;
 
-import java.util.List;
-
 import org.titans.bean.sys.SysPostBean;
+import org.titans.core.dao.IBaseDao;
 
-public interface ISysPostDao {
-
-    List<SysPostBean> queryAllSysPostInfo();
+public interface ISysPostDao extends IBaseDao<SysPostBean>{
 
     SysPostBean queryDetailInfoById(String id);
-
-    void saveOrUpdateSysPostInfo(SysPostBean sysPost);
 
     void deleteSysPostInfo(SysPostBean sysPost);
 }

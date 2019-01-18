@@ -2,9 +2,14 @@ package org.titans.service.sys.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.titans.bean.sys.SysDeptBean;
 import org.titans.bean.sys.SysUserBean;
+import org.titans.core.service.impl.BaseServiceImpl;
+import org.titans.dao.sys.ISysPostDao;
 import org.titans.dao.sys.ISysUserDao;
 import org.titans.dao.sys.ISysUserRoleDao;
 import org.titans.service.sys.ISysUserService;
@@ -13,14 +18,16 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 @Service
-public class SysUserServiceImpl implements ISysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserBean> implements ISysUserService {
 
     @Autowired
     private ISysUserDao sysUserDao;
-    
-    @Autowired
-    private ISysUserRoleDao sysUserRoleDao;
 
+    @Resource
+    public void setSysUserDao(ISysUserDao sysUserDao) {
+        super.setBaseDao(sysUserDao);
+        this.sysUserDao = sysUserDao;
+    }
     public String checkUserLogin(String userCode, String password) {
 
         SysUserBean user = sysUserDao.querySysUserByCode(userCode, password);
@@ -31,7 +38,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public String queryAllSysUserInfo() {
 
-        List<SysUserBean> list = sysUserDao.queryAllSysUserInfo();
+        List<SysUserBean> list = sysUserDao.getAll();
         return JSON.toJSONString(list);
     }
 
@@ -40,12 +47,6 @@ public class SysUserServiceImpl implements ISysUserService {
 
         SysUserBean sysUserBean = sysUserDao.queryDetailInfoById(id);
         return JSON.toJSONString(sysUserBean, SerializerFeature.DisableCircularReferenceDetect);
-    }
-
-    @Override
-    public void saveOrUpdateSysUserInfo(SysUserBean sysUser) {
-
-        sysUserDao.saveOrUpdateSysUserInfo(sysUser);
     }
 
     @Override

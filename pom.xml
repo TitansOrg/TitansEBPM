@@ -5,6 +5,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
+        <junit.version>4.10</junit.version>
         <spring.version>4.3.18.RELEASE</spring.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
@@ -18,8 +19,15 @@
         <fastjson.version>1.1.39</fastjson.version>
         <jackson.version>2.9.7</jackson.version>
         <freemarker.version>2.3.28</freemarker.version>
+        <mysql.version>5.1.46</mysql.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -125,6 +133,11 @@
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>ebpm</finalName>
@@ -156,14 +169,24 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
+            <!-- <properties>
                 <config>dev</config>
                 <jdbc.driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc.driver>
                 <jdbc.url>
-                    <![CDATA[jdbc:sqlserver://basdb:1433;databaseName=ArisPub]]>
+                    <![CDATA[jdbc:sqlserver://basdb.klsz.com:1433;DatabaseName=ArisPub]]>
                 </jdbc.url>
                 <jdbc.username>AutoDeployAdmin</jdbc.username>
                 <jdbc.password>KH2oydrA</jdbc.password>
+                <log4j.path>/data/logs/tomcat</log4j.path>
+            </properties> -->
+            <properties>
+                <config>dev</config>
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+                <jdbc.url>
+                    <![CDATA[jdbc:mysql://127.0.0.1:3306/ArisPub?useUnicode=true&amp;characterEncoding=utf-8]]>
+                </jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>123456</jdbc.password>
                 <log4j.path>/data/logs/tomcat</log4j.path>
             </properties>
         </profile>

@@ -72,7 +72,7 @@ public class SysRoleController {
         boolean result = true;
         try {
 
-            sysRoleService.saveOrUpdateSysRoleInfo(sysRole);
+            sysRoleService.saveOrUpdate(sysRole);
         } catch (Exception e) {
 
             log.error("保存或更新数据" + JSON.toJSONString(sysRole) + "时发生异常，" + e.getMessage(), e);

@@ -72,7 +72,7 @@ public class SysUserController {
         boolean result = true;
         try {
 
-            sysUserService.saveOrUpdateSysUserInfo(sysUser);
+            sysUserService.saveOrUpdate(sysUser);
         } catch (Exception e) {
 
             log.error("保存或更新数据" + JSON.toJSONString(sysUser) + "时发生异常，" + e.getMessage(), e);

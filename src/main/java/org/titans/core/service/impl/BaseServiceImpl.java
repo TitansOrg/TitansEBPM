@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.titans.core.dao.IBaseDao;
-import org.titans.core.page.PageResult;
 import org.titans.core.service.BaseService;
 import org.titans.core.utils.QueryHelper;
 

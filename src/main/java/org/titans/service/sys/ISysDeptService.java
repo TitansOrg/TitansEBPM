@@ -13,4 +13,5 @@ public interface ISysDeptService extends BaseService<SysDeptBean> {
     void removeSysDeptInfo(List<SysDeptBean> sysDept);
 
     List<Map<String, String>> getAllDeptInfo();
+
 }

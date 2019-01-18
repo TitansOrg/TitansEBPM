@@ -46,7 +46,7 @@ public class SysPostController {
     @RequestMapping(value = "getSysPostList")
     public List<SysPostBean> getSysPostList() {
 
-        List<SysPostBean> list = sysPostService.queryAllSysPostInfo();
+        List<SysPostBean> list = sysPostService.getAll();
         return list;
     }
 
@@ -74,7 +74,7 @@ public class SysPostController {
         boolean result = true;
         try {
 
-            sysPostService.saveOrUpdateSysPostInfo(sysPost);
+            sysPostService.saveOrUpdate(sysPost);
         } catch (Exception e) {
 
             log.error("保存或更新数据" + JSON.toJSONString(sysPost) + "时发生异常，" + e.getMessage(), e);

@@ -31,13 +31,6 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptBean> implements 
         super.setBaseDao(sysDeptDao);
         this.sysDeptDao = sysDeptDao;
     }
-   /* @Override
-    public List<SysDeptBean> queryAllSysDeptInfo() {
-
-        List<SysDeptBean> list = sysDeptDao.queryAllSysDeptInfo();
-        JSON.toJSONString(list);
-        return list;
-    }*/
 
    @Override
     public SysDeptBean queryDetailInfoById(String id) {
@@ -51,12 +44,6 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptBean> implements 
         }
         return sysDept;
     }
-
-   /* @Override
-    public void saveOrUpdateSysDeptInfo(SysDeptBean sysDept) {
-
-        sysDeptDao.saveOrUpdateSysDeptInfo(sysDept);
-    }*/
 
     @Override
     public void removeSysDeptInfo(List<SysDeptBean> sysDepts) {

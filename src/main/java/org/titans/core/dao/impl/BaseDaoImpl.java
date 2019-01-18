@@ -74,8 +74,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 
     @Override
     public T findById(Serializable id) {
-        T t= (T) getSession().get(clazz, id);
-        JSON.toJSONString(t);
+        T t = (T) getSession().get(clazz, id);
         return t;
     }
 
