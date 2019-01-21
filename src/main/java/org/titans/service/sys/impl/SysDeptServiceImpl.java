@@ -32,19 +32,6 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptBean> implements 
         this.sysDeptDao = sysDeptDao;
     }
 
-   @Override
-    public SysDeptBean queryDetailInfoById(String id) {
-
-        SysDeptBean sysDept = sysDeptDao.queryDetailInfoById(id);
-        List<SysPostBean> postList = sysDept.getSysPostList();
-        for (int i = 0; i < postList.size(); i++) {
-
-            SysPostBean sysPostBean = postList.get(i);
-            Hibernate.initialize(sysPostBean);
-        }
-        return sysDept;
-    }
-
     @Override
     public void removeSysDeptInfo(List<SysDeptBean> sysDepts) {
 

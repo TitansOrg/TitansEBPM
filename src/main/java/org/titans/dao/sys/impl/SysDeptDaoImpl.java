@@ -17,15 +17,6 @@ import org.titans.dao.sys.ISysDeptDao;
 public class SysDeptDaoImpl extends BaseDaoImpl<SysDeptBean> implements ISysDeptDao {
 
     @Override
-    public SysDeptBean queryDetailInfoById(String id) {
-
-        Session session = getSession();
-        return (SysDeptBean) session.get(SysDeptBean.class, new Long(id));
-    }
-
-   
-
-    @Override
     public void deleteSysDeptInfo(SysDeptBean sysDept) {
 
         Session session = getSession();

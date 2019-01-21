@@ -8,8 +8,6 @@ import org.titans.core.service.BaseService;
 
 public interface ISysDeptService extends BaseService<SysDeptBean> {
 
-    SysDeptBean queryDetailInfoById(String id);
-
     void removeSysDeptInfo(List<SysDeptBean> sysDept);
 
     List<Map<String, String>> getAllDeptInfo();

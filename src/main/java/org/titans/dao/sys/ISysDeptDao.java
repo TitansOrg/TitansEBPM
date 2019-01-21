@@ -8,8 +8,6 @@ import org.titans.core.dao.IBaseDao;
 
 public interface ISysDeptDao extends IBaseDao<SysDeptBean>{
 
-    SysDeptBean queryDetailInfoById(String id);
-
     void deleteSysDeptInfo(SysDeptBean sysDept);
 
     List<Map<String, String>> getAllDeptInfo();

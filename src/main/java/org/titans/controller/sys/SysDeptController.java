@@ -70,7 +70,7 @@ public class SysDeptController {
     @RequestMapping(value = "queryDetailInfoById")
     public SysDeptBean queryDetailInfoById(String id) {
 
-        SysDeptBean bean = sysDeptService.queryDetailInfoById(id);
+        SysDeptBean bean = sysDeptService.findById(new Long(id));
         return bean;
     }
 
