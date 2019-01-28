@@ -1,5 +1,6 @@
 package org.titans.service.sys.impl;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.servlet.ServletOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.titans.bean.sys.SysDeptBean;
 import org.titans.bean.sys.SysUserBean;
 import org.titans.core.service.impl.BaseServiceImpl;
@@ -63,5 +65,16 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserBean> implements 
     public void exportExcel(List<SysUserBean> userList, ServletOutputStream outputStream) {
 
         ExcelUtil.exportExcel(userList, outputStream);
+    }
+    @Override
+    public void saveExcel(MultipartFile file) {
+        // TODO Auto-generated method stub
+        List<SysUserBean> userList = ExcelUtil.importExcel(file, "");
+        if (userList.size() > 0) {
+            for (int i = 0; i < userList.size(); i++) {
+                SysUserBean sysUserBean = userList.get(i);
+                sysUserDao.saveOrUpdate(sysUserBean);
+            }
+        }
     }
 }

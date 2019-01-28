@@ -21,6 +21,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 import org.titans.bean.sys.SysUserBean;
 
 public class ExcelUtil {
@@ -103,18 +104,18 @@ public class ExcelUtil {
     }
     
     /**
-     * 导入工作表
+     * 导入工作表.
      * @param file
      * @param userExcelFileName
      */
-    public static List<SysUserBean> importExcel(File file, String userExcelFileName) {
+    public static List<SysUserBean> importExcel(MultipartFile file, String userExcelFileName) {
         List<SysUserBean> userList = new ArrayList<SysUserBean>();
         try {
             Workbook workbook = null;
             try {
-                workbook = new HSSFWorkbook(new FileInputStream(file));
+                workbook = new HSSFWorkbook(file.getInputStream());
             } catch (Exception e) {
-                workbook = new XSSFWorkbook(new FileInputStream(file));
+                workbook = new XSSFWorkbook(file.getInputStream());
             }
             // 获取工作表
             Sheet sheetAt = workbook.getSheetAt(0);

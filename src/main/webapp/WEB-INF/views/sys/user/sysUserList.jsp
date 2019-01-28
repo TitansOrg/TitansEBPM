@@ -15,8 +15,7 @@
         <link rel="stylesheet" href="<%=serverName%>/css/datatables.net-bs/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="<%=serverName%>/css/iCheck/square/blue.css">
         <link rel="stylesheet" href="<%=serverName%>/css/bootstrap-fileinput/fileinput.min.css">
-        <script src="<%=serverName%>/js/jquery/jquery.min.js"></script>
-        <script src="<%=serverName%>/js/bootstrap/bootstrap.min.js"></script>
+
         <style>
             .content {
 
@@ -53,9 +52,8 @@
                                 <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="addData();">添加</button>
                                 <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="modifyData();">修改</button>
                                 <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="removeData();">删除</button>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <button class="btn btn-sm btn-flat btn-primary" data-toggle="modal" data-target="#myModal">导入</button>
-                                <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="doExportExcel()">导出</button>
+                                <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="doImportExcel();">导入</button>
+                                <button type="button" class="btn btn-sm btn-flat btn-primary" onclick="doExportExcel();">导出</button>
                             </form>
                         </div>
                         <div class="box-body">
@@ -78,33 +76,9 @@
                 </div>
             </div>
         </section>
-    <!-- 模态框（Modal） -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            模态框（Modal）标题
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        在这里添加一些文本
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            提交更改
-                        </button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
     </body>
-    
+    <script src="<%=serverName%>/js/jquery/jquery.min.js"></script>
+    <script src="<%=serverName%>/js/bootstrap/bootstrap.min.js"></script>
     <script src="<%=serverName%>/js/datatables.net/jquery.dataTables.min.js"></script>
     <script src="<%=serverName%>/js/datatables.net-bs/dataTables.bootstrap.min.js"></script>
     <script src="<%=serverName%>/js/adminlte/adminlte.min.js"></script>
@@ -113,8 +87,6 @@
     <script src="<%=serverName%>/js/iCheck/icheck.min.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.dialog.js"></script>
     <script src="<%=serverName%>/js/titans/jquery.titans.date.js"></script>
-    <script src="<%=serverName%>/js/bootstrap-fileinput/fileinput.min.js"></script>
-    <script src="<%=serverName%>/js/bootstrap-fileinput/zh.js"></script>
     <script>
         $(function () {
 
@@ -275,8 +247,14 @@
         }
 
         function doImportExcel(){
-          
-            
+            var options = {
+
+                    title : "用户导入",
+                    url : "<%=serverName%>/user/importDetail.do",
+                    height : 500,
+                    width : 1000
+                }
+            $.fn.titans.dialog.openDialog(options);
         }
     </script>
 </html>

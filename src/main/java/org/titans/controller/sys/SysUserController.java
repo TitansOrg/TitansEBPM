@@ -1,5 +1,7 @@
 package org.titans.controller.sys;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +16,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.titans.annotation.AuthenPassport;
 import org.titans.bean.sys.SysUserBean;
 import org.titans.service.sys.ISysUserService;
 import org.titans.util.ExcelUtil;
+import org.titans.util.Result;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -137,13 +143,27 @@ public class SysUserController {
     }
 
     @AuthenPassport
-    @RequestMapping(value = "importData")
-    public ModelAndView importExcel(HttpServletResponse response ,HttpServletRequest request) {
-        MultipartRequest multipartRequest=(MultipartRequest) request;
-        MultipartFile excelFile = multipartRequest.getFile("excelFile");
-        if(excelFile!=null){
-          
-        }
-        return new ModelAndView("sys/user/sysUserList");
+    @RequestMapping(value = "importDetail")
+    public ModelAndView importDetail(HttpServletRequest request) {
+
+        return new ModelAndView("sys/user/importDetail");
     }
+
+    @AuthenPassport
+    @RequestMapping(value = "importExcel")
+    @ResponseBody
+    public boolean uploadFlatness(@RequestParam("file") MultipartFile file,
+            HttpServletRequest request) throws IOException {
+        boolean result = true;
+        try {
+
+            sysUserService.saveExcel(file);
+        } catch (Exception e) {
+
+            log.error("保存或更新数据" + JSON.toJSONString(file) + "时发生异常，" + e.getMessage(), e);
+            result = false;
+        }
+        return result;
+    }
+
 }
