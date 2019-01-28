@@ -45,7 +45,6 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
         clazz = (Class<T>) types[0];
         
         className = clazz.getSimpleName();//例如：Emp
-        
     }
     
     public Session getSession(){

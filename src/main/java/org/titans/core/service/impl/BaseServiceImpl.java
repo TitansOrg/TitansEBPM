@@ -13,7 +13,6 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     
     public BaseServiceImpl(){
 
-        System.out.println(baseDao);
     }
     /**
      * @param baseDao the baseDao to set
@@ -51,13 +50,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return baseDao.findObjects(hql, parameters);
     }
 
-
     @Override
     public List<T> findObjects(QueryHelper queryHelper) {
         return baseDao.findObjects(queryHelper);
     }
-
-
-
 
 }

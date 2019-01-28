@@ -3,8 +3,11 @@ package org.titans.controller.sys;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.titans.annotation.AuthenPassport;
 import org.titans.bean.sys.SysUserBean;
 import org.titans.service.sys.ISysUserService;
+import org.titans.util.ExcelUtil;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -106,5 +112,38 @@ public class SysUserController {
         return result;
     }
     
-   
+    // 导出用户列表到excel
+    @AuthenPassport
+    @RequestMapping(value = "exportExcel")
+    public void exportExcel(HttpServletResponse response) throws ServiceException {
+        List<SysUserBean> userList = sysUserService.getAll();
+        // 2导出
+        try {
+            // 生成低版本让高级低级版本都能打开
+            // new String 防止除IE外的浏览器中文乱码
+            response.setContentType("application/x-execl");
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=" + new String("用户列表.xls".getBytes(), "ISO-8859-1"));
+            ServletOutputStream outputStream = response.getOutputStream();
+            sysUserService.exportExcel(userList, outputStream);
+            if (outputStream != null) {
+                outputStream.close();
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    @AuthenPassport
+    @RequestMapping(value = "importData")
+    public ModelAndView importExcel(HttpServletResponse response ,HttpServletRequest request) {
+        MultipartRequest multipartRequest=(MultipartRequest) request;
+        MultipartFile excelFile = multipartRequest.getFile("excelFile");
+        if(excelFile!=null){
+          
+        }
+        return new ModelAndView("sys/user/sysUserList");
+    }
 }
