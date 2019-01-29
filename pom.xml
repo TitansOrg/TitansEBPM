@@ -183,20 +183,26 @@
     </build>
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>mysql</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <!-- <properties>
+            <properties>
                 <config>dev</config>
-                <jdbc.driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc.driver>
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
                 <jdbc.url>
-                    <![CDATA[jdbc:sqlserver://basdb.klsz.com:1433;DatabaseName=ArisPub]]>
+                    <![CDATA[jdbc:mysql://192.168.137.66:3306/ArisPub?useUnicode=true&amp;characterEncoding=utf-8]]>
                 </jdbc.url>
-                <jdbc.username>AutoDeployAdmin</jdbc.username>
-                <jdbc.password>KH2oydrA</jdbc.password>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>shang1234</jdbc.password>
                 <log4j.path>/data/logs/tomcat</log4j.path>
-            </properties> -->
+            </properties>
+        </profile>
+                <profile>
+            <id>sqlserver</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <properties>
                 <config>dev</config>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
