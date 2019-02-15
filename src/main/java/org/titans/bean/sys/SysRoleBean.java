@@ -1,6 +1,8 @@
 package org.titans.bean.sys;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -44,6 +48,21 @@ public class SysRoleBean {
      * 更新时间.
      */
     private Date updateTime;
+
+    private List<SysUserBean> users = new ArrayList<>();
+
+    @ManyToMany(targetEntity = SysUserBean.class, fetch = FetchType.LAZY)
+    @JoinTable(name="sys_user_role",
+        joinColumns={@JoinColumn(name="role_id",referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="user_id",referencedColumnName="id")}
+    )
+    public List<SysUserBean> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<SysUserBean> users) {
+        this.users = users;
+    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

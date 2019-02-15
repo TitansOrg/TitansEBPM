@@ -71,9 +71,12 @@
     <tx:advice id="txAdvice" transaction-manager="ebpmTxManager">
         <tx:attributes>
             <tx:method name="add*" propagation="REQUIRED" />
-            <tx:method name="get*" propagation="REQUIRED" />
             <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED"/>
             <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="get*" propagation="REQUIRED" />
             <tx:method name="*" read-only="true" />
         </tx:attributes>
     </tx:advice>
@@ -81,5 +84,5 @@
         <aop:pointcut id="txPointcut" expression="execution(* org.titans.service..*.*(..)) or execution(* org.titans.core.service..*.*(..))" />
         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>
-    <!-- <import resource="spring-quartz.xml"/> -->
+    <import resource="activiti.cfg.xml"/>
 </beans>

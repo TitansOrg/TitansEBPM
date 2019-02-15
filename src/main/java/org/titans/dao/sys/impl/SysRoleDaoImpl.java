@@ -1,6 +1,8 @@
 package org.titans.dao.sys.impl;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.titans.bean.sys.SysRoleBean;
 import org.titans.core.dao.impl.BaseDaoImpl;
@@ -21,5 +23,15 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRoleBean> implements ISysRole
 
         Session session = getSession();
         session.delete(sysRole);
+    }
+
+    @Override
+    public SysRoleBean querySysRoleByName(String roleName) {
+
+        Session session = getSession();
+        Criteria criteria = session.createCriteria(SysRoleBean.class);
+        criteria.add(Restrictions.eq("name", roleName));
+        SysRoleBean bean = (SysRoleBean) criteria.uniqueResult();
+        return bean;
     }
 }

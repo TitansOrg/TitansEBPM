@@ -31,7 +31,7 @@
                         </div>
                         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">首页</a></li>
+                                <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/workflow/myTaskListPage.do');">首页</a></li>
                                 <li><a  target = "mainFrame" href="<%=serverName%>/flowInfo/flowDetail.do">流程文件 </a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <span class="caret"></span></a>
@@ -41,10 +41,14 @@
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/role/sysRoleList.do');">角色管理</a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/dept/sysDeptList.do');">部门管理</a></li>
-                                         <li class="divider"></li>
+                                        <li class="divider"></li>
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/post/sysPostList.do');">岗位管理</a></li>
                                         <li class="divider"></li>
                                         <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/auth/authList.do');">权限管理</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/workflow/processList.do');">工作流程管理</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="javascript:void(0);" onclick="openMenu('<%=serverName%>/device/deviceApplyList.do');">设备申请</a></li>
                                     </ul>
                                 </li>
                             </ul>

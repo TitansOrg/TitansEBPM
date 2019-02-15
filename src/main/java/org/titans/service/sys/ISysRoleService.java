@@ -12,4 +12,6 @@ public interface ISysRoleService extends BaseService<SysRoleBean> {
     String queryDetailInfoById(String id);
 
     void removeSysRoleInfo(List<SysRoleBean> sysRole);
+
+    SysRoleBean querySysRoleByName(String roleName);
 }

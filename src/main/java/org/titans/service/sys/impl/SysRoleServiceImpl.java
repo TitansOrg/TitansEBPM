@@ -4,12 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.titans.bean.sys.SysDeptBean;
 import org.titans.bean.sys.SysRoleBean;
 import org.titans.core.service.impl.BaseServiceImpl;
-import org.titans.dao.sys.ISysPostDao;
 import org.titans.dao.sys.ISysRoleDao;
 import org.titans.service.sys.ISysRoleService;
 
@@ -47,5 +44,12 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleBean> implements 
 
             sysRoleDao.deleteSysRoleInfo(sysRoles.get(i));
         }
+    }
+
+    @Override
+    public SysRoleBean querySysRoleByName(String roleName) {
+
+        SysRoleBean role = sysRoleDao.querySysRoleByName(roleName);
+        return role;
     }
 }
